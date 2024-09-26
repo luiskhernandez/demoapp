@@ -24,6 +24,7 @@ group :development do
   gem "letter_opener"
   gem "erb_lint", require: false
   gem "web-console"
+  gem "pry-rails"
 end
 
 group :test do
