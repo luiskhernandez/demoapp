@@ -32,3 +32,6 @@ group :test do
   gem "selenium-webdriver", require: false
   gem "capybara", require: false
 end
+
+gem "view_component", "~> 3.16"
+gem "lookbook", ">= 2.3.2"

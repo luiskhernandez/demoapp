@@ -1,0 +1,33 @@
+<% tag.attributes(@html_options) %>
+<div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+
+  <% if header? %>
+    <div class="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700">
+      <p class="mt-1 text-sm text-gray-500 dark:text-neutral-500">
+      <%= header %>
+      </p>
+    </div>
+  <% end %>
+
+  <div class="p-5">
+  <% if @title.present? %>
+    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+      <%= @title %>
+    </h3>
+  <% end %>
+
+  <% if @subtitle.present? %>
+    <p class="mt-1 text-xs font-medium uppercase text-gray-500 dark:text-neutral-500">
+    <%= @subtitle %>
+    </p>
+  <% end %>
+
+  <p class="mt-2 text-gray-500 dark:text-neutral-400">
+  <%= body %>
+  </p>
+
+  <div class="footer-actions">
+    <%= footer %>
+  </div>
+  </div>
+</div>

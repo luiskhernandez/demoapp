@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root "home#index"
+  # root "home#index"
   get "home/second" => "home#second", as: :second
+  get "home" => "home#index", as: :home
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+
+   mount Lookbook::Engine, at: "/"
   # Defines the root path route ("/")
   # root "posts#index"
 end

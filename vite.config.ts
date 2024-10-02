@@ -7,7 +7,7 @@ export default defineConfig({
       envVars: { RAILS_ENV: "development" },
       envOptions: { defineOn: "import.meta.env" },
       fullReload: {
-        additionalPaths: [],
+        additionalPaths: ["app/components/**/*.rb"],
       },
     }),
   ],
