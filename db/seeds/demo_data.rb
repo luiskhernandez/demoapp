@@ -65,4 +65,37 @@ AssignedTrainingPlan.find_or_create_by!(profile: davis_profile, training_plan: s
 AssignedTrainingPlan.find_or_create_by!(profile: curry_profile, training_plan: off_season_plan)
 puts 'Assigned Training Plans create_byd'
 
+
+# Create Workouts for Game Day Prep Plan
+day_1_workout = Workout.find_or_create_by!(name: 'Day 1 - Warmup and Conditioning', description: 'Focus on warming up and light conditioning', position: 0 , training_plan: game_day_plan)
+day_2_workout = Workout.find_or_create_by!(name: 'Day 2 - Strength Training', description: 'Full body strength training session', position: 1, training_plan: game_day_plan)
+puts 'Workouts for Game Day Prep Plan created'
+
+# Create Sections for Day 1 Workout
+warmup_section = Section.find_or_create_by!(name: 'Warmup', position: 1, expected_result_type: :observations, workout: day_1_workout)
+warmup_section.content = '10 minutes of light jogging and dynamic stretches'
+warmup_section.save!
+
+skill_section = Section.find_or_create_by!(name: 'Skill Practice', position: 2, expected_result_type: :time, workout: day_1_workout)
+skill_section.content = '15 minutes of dribbling drills'
+skill_section.save!
+
+conditioning_section = Section.find_or_create_by!(name: 'Conditioning', position: 3, expected_result_type: :repetitions, workout: day_1_workout)
+conditioning_section.content = '5 sets of 20 burpees'
+conditioning_section.save!
+puts 'Sections for Day 1 Workout created'
+
+# Create Sections for Day 2 Workout
+strength_section = Section.find_or_create_by!(name: 'Strength Training', position: 1, expected_result_type: :weight, workout: day_2_workout)
+strength_section.content = '3 sets of 10 squats at 70% of max weight'
+strength_section.save!
+
+core_section = Section.find_or_create_by!(name: 'Core Workout', position: 2, expected_result_type: :repetitions, workout: day_2_workout)
+core_section.content = '4 sets of 15 sit-ups'
+core_section.save!
+
+cooldown_section = Section.find_or_create_by!(name: 'Cooldown', position: 3, expected_result_type: :observations, workout: day_2_workout)
+cooldown_section.content = '10 minutes of stretching'
+cooldown_section.save!
+puts 'Sections for Day 2 Workout created'
 puts 'Seeding complete.'

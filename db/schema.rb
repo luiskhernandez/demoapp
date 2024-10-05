@@ -10,9 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_05_103448) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_05_130844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "assigned_training_plans", force: :cascade do |t|
     t.bigint "profile_id", null: false
@@ -235,6 +273,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_103448) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "results", force: :cascade do |t|
+    t.string "result_value"
+    t.date "date"
+    t.bigint "section_id", null: false
+    t.bigint "athlete_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["athlete_id"], name: "index_results_on_athlete_id"
+    t.index ["section_id"], name: "index_results_on_section_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.text "content"
+    t.integer "expected_result_type"
+    t.bigint "workout_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workout_id"], name: "index_sections_on_workout_id"
+  end
+
   create_table "training_plans", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -253,6 +313,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_103448) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "workouts", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "position"
+    t.text "description"
+    t.bigint "training_plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["training_plan_id"], name: "index_workouts_on_training_plan_id"
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assigned_training_plans", "profiles"
   add_foreign_key "assigned_training_plans", "training_plans"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
@@ -261,5 +333,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_05_103448) do
   add_foreign_key "motor_note_tag_tags", "motor_notes", column: "note_id"
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "profiles", "users"
+  add_foreign_key "results", "profiles", column: "athlete_id"
+  add_foreign_key "results", "sections"
+  add_foreign_key "sections", "workouts"
   add_foreign_key "training_plans", "profiles", column: "author_id"
+  add_foreign_key "workouts", "training_plans"
 end
