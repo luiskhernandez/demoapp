@@ -16,5 +16,7 @@ services:
         fromDatabase:
           name: demoapp
           property: connectionString
+      - key: RAILS_ENV
+        value: staging
       - key: RAILS_MASTER_KEY
         sync: false

@@ -73,7 +73,12 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    ar_lazy_preload (1.1.2)
+      rails (>= 5.2)
     ast (2.4.2)
+    audited (5.7.0)
+      activerecord (>= 5.2, < 8.0)
+      activesupport (>= 5.2, < 8.0)
     base64 (0.2.0)
     better_html (2.1.1)
       actionview (>= 6.0)
@@ -89,6 +94,7 @@ GEM
     brakeman (6.2.1)
       racc
     builder (3.3.0)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -106,6 +112,7 @@ GEM
     crass (1.0.6)
     css_parser (1.19.0)
       addressable
+    csv (3.3.0)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -122,11 +129,16 @@ GEM
       rubocop (>= 1)
       smart_properties
     erubi (1.13.0)
+    et-orbi (1.2.11)
+      tzinfo
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    fugit (1.11.1)
+      et-orbi (~> 1, >= 1.2.11)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     good_migrations (0.2.1)
@@ -176,6 +188,13 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    motor-admin (0.4.31)
+      ar_lazy_preload (~> 1.0)
+      audited (~> 5.0)
+      cancancan (~> 3.0)
+      csv (>= 3.0)
+      fugit (~> 1.0)
+      rails (>= 5.2)
     msgpack (1.7.2)
     net-imap (0.4.16)
       date
@@ -214,6 +233,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.3)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.7)
     rack-proxy (0.7.7)
@@ -379,6 +399,7 @@ DEPENDENCIES
   jbuilder
   letter_opener
   lookbook (>= 2.3.2)
+  motor-admin (~> 0.4.31)
   pg (~> 1.1)
   pry-rails
   puma (>= 5.0)

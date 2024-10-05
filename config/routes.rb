@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Motor::Admin => '/admin'
   # root "home#index"
   get "home/second" => "home#second", as: :second
   get "home" => "home#index", as: :home

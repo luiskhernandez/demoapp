@@ -35,3 +35,5 @@ end
 
 gem "view_component", "~> 3.16"
 gem "lookbook", ">= 2.3.2"
+
+gem "motor-admin", "~> 0.4.31"

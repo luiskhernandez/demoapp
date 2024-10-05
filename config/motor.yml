@@ -1,0 +1,66 @@
+---
+engine_version: 0.4.31
+file_version: 2024-10-05 11:36:26.310195000 Z
+resources:
+- name: assigned_training_plan
+  preferences:
+    visible: false
+  updated_at: 2024-10-05 06:36:26.310195000 -05:00
+- name: profile
+  preferences:
+    columns:
+    - access_type: hidden
+      reference:
+        name: profilable
+        display_name: Profilable
+        model_name:
+        reference_type: belongs_to
+        foreign_key: profilable_id
+        primary_key: id
+        options: {}
+        polymorphic: true
+        virtual: false
+      name: profilable_id
+    - access_type: hidden
+      name: profilable_type
+  updated_at: 2024-10-05 06:04:14.723773000 -05:00
+- name: training_plan
+  preferences:
+    scopes:
+    - visible: false
+      name: not_mobility
+    - visible: false
+      name: not_skills
+    - visible: false
+      name: not_strength
+    columns:
+    - access_type: read_write
+      name: id
+  updated_at: 2024-10-05 06:32:53.929723000 -05:00
+configs:
+- key: header.links
+  value:
+  - name: "⭐ Star on GitHub"
+    path: https://github.com/motor-admin/motor-admin-rails
+  updated_at: 2024-10-05 06:03:35.548339000 -05:00
+- key: resources.training_plan.columns.order
+  value:
+  - id
+  - name
+  - author_id
+  - description
+  - plan_type
+  - updated_at
+  - created_at
+  updated_at: 2024-10-05 06:32:48.554687000 -05:00
+queries: []
+dashboards: []
+forms: []
+alerts: []
+api_configs:
+- id: 1
+  name: origin
+  url: "/"
+  preferences: {}
+  description:
+  updated_at: 2024-10-05 06:03:35.553393000 -05:00
