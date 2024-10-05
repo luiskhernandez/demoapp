@@ -41,5 +41,6 @@ module Demoapp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.lookbook.project_name = "Demo app"
   end
 end
