@@ -10,9 +10,17 @@ export default {
     'test/components/previews/**/**/*.html.erb',
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        fadeInOut: {
+          '0%': { opacity: '1', maxHeight: 'auto' },
+          '99%': { opacity: '0', maxHeight: '0px' },
+          '100%': { display: 'none', maxHeight: 'opx' },
+        }
+      },
+      animation: {
+        fadeInOut: 'fadeInOut 4s ease-in-out forwards',
+      }
+    }
   },
-  plugins: [
-      require('preline/plugin'),
-  ],
 }

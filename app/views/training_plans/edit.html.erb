@@ -1,0 +1,12 @@
+<% content_for :title, "Editing training plan" %>
+
+<h1>Editing training plan</h1>
+
+<%= render "form", training_plan: @training_plan %>
+
+<br>
+
+<div>
+  <%= link_to "Show this training plan", @training_plan %> |
+  <%= link_to "Back to training plans", training_plans_path %>
+</div>

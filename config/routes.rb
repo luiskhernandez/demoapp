@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
+  post 'switch_profile/:profile_id', to: 'authenticated#switch_profile', as: 'switch_profile'
+
+  resources :training_plans
   mount Motor::Admin => '/admin'
-  # root "home#index"
+  root "training_plans#index"
   get "home/second" => "home#second", as: :second
   get "home" => "home#index", as: :home
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,7 +18,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
 
-   mount Lookbook::Engine, at: "/"
+   mount Lookbook::Engine, at: "/lookbook"
   # Defines the root path route ("/")
   # root "posts#index"
 end

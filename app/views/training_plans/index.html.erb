@@ -1,0 +1,15 @@
+
+<% content_for :title, "Training plans" %>
+
+<h1>Training plans</h1>
+
+<div id="training_plans">
+  <% @training_plans.each do |training_plan| %>
+    <%= render training_plan %>
+    <p>
+      <%= link_to "Show this training plan", training_plan %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New training plan", new_training_plan_path %>
