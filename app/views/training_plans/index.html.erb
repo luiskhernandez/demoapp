@@ -1,15 +1,26 @@
-
 <% content_for :title, "Training plans" %>
 
-<h1>Training plans</h1>
-
-<div id="training_plans">
-  <% @training_plans.each do |training_plan| %>
-    <%= render training_plan %>
-    <p>
-      <%= link_to "Show this training plan", training_plan %>
-    </p>
-  <% end %>
+<div class="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+  <h3 class="text-base font-semibold leading-6 text-gray-900">Training plans</h3>
+  <div class="mt-3 flex sm:ml-4 sm:mt-0">
+    <%= link_to "New training plan", new_training_plan_path, class: "ml-3 inline-flex items-center rounded-md bg-primary-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600" %>
+  </div>
 </div>
 
-<%= link_to "New training plan", new_training_plan_path %>
+<div id="training_plans">
+  <div class="p-1.5 w-full inline-block align-middle ">
+    <div class="overflow-x-auto">
+      <div class="table border-collapse table-auto w-full divide-y divide-gray-200 dark:divide-neutral-700">
+        <div class="table-header-group">
+          <div class="table-row">
+            <div class="table-cell px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Name</div>
+            <div class="table-cell px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Type</div>
+            <div class="table-cell px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Action</div>
+          </div>
+        </div>
+        <%= render partial: "training_plans/row", collection: @training_plans, as: :training_plan %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,15 +1,9 @@
 <%= render "shared/shared_layout" do %>
-  <%= render "shared/cmd_k" %>
-  <ul>
-    <% Profile.coach.each do |profile| %>
-      <li>
-        <%= button_to profile.display_name, switch_profile_path(profile_id: profile.id), method: :post, class: class_names({"text-blue-500": profile.id == current_profile.id}) %>
-      </li>
-    <% end %>
-  </ul>
-  <div class="container mx-auto">
+    <%= render "shared/profile_dropdown" if Rails.env.development? || Rails.env.staging? %>
+
+  <div class="container mx-auto mt-10">
     <% if notice %>
-      <div class="absolute inset-x-0 top-2 h-16 animate-fadeInOut px-20" style="animation-delay: 3s;">
+      <div class="absolute inset-x-0 top-2 h-16 animate-fadeInOut px-20" style="animation-delay: 1s;">
         <div class="mt-2 bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg p-4 dark:bg-teal-800/10 dark:border-teal-900 dark:text-teal-500" role="alert" tabindex="-1" aria-labelledby="hs-soft-color-success-label">
           <span id="hs-soft-color-success-label" class="font-bold">Success</span> <%= notice %>
         </div>
